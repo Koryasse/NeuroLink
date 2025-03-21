@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "bad-words": "^4.0.0",
     "bad-words-es": "^1.0.0",

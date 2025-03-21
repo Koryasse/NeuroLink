@@ -1,51 +1,35 @@
-// Importation des modules
-import express from 'express';
-import { Server } from 'socket.io';
-import http from 'http';
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 
-// Création de l'application Express
+// Initialisation de l'application Express
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Configuration de l'application Express
+// Servir les fichiers statiques (HTML, CSS, JS)
 app.use(express.static('public'));
 
-// Gestion des connexions WebSocket
+// Gestion des connexions Socket.io
 io.on('connection', (socket) => {
-    console.log('Un utilisateur connecté');
+    console.log('Un utilisateur s\'est connecté');
 
-    socket.on('message', (message) => {
-        if (!message.trim()) return;
-        let filteredMessage = filter.clean(message);
-        console.log(`Message reçu de ${socket.id}: ${filteredMessage}`);
-        socket.broadcast.emit('message', filteredMessage);
+    // Écoute des messages envoyés par un client
+    socket.on('message', (msg) => {
+        console.log('Message reçu :', msg);
+
+        // Diffuse le message à tous les autres clients sauf l'expéditeur
+        socket.broadcast.emit('message', msg);
     });
 
+    // Gestion de la déconnexion
     socket.on('disconnect', () => {
-        console.log('Un utilisateur déconnecté');
+        console.log('Un utilisateur s\'est déconnecté');
     });
 });
 
-// Gestion des signaux d'arrêt
-process.on('SIGINT', () => {
-    console.log('Arrêt du serveur');
-    server.close(() => {
-        console.log('Serveur arrêté');
-        process.exit(0);
-    });
-});
-
-// Gestion des signaux d'arrêt
-process.on('SIGTERM', () => {
-    console.log('Arrêt du serveur');
-    server.close(() => {
-        console.log('Serveur arrêté');
-        process.exit(0);
-    });
-});
-
-// Démarrage du serveur
-server.listen(3000, () => {
-    console.log('Serveur démarré sur http://localhost:3000');
+// Démarrage du serveur sur toutes les interfaces réseau
+const PORT = 80;
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Serveur démarré sur http://0.0.0.0:${PORT}`);
 });
