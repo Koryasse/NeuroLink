@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "bad-words": "^4.0.0",
-    "bad-words-es": "^1.0.0",
-    "express": "^4.21.2",
-    "leven": "^4.0.0",
-    "socket.io": "^4.8.1"
-  }
-}

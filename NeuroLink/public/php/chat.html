@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroLink - Talk to your classmates</title>
+    <link rel="stylesheet" href="../css/chat.css"> <!--Le css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!--Pour l'icone-->
+    <script src="/socket.io/socket.io.js"></script> <!--Le websocket-->
+</head>
+<body>
+    <main>
+        <section class="left-tab"> <!--La partie gauche concernant le menu-->
+        </section>
+        <section class="right-tab">  <!--La partie droite avec le chat-->
+            <div>   <!--Message affichés-->
+                <div id="messages-container">
+                    <div id="messages">
+                        <ul id="messages-content"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="global-send">   <!--Input pour envoyer-->
+                <form action="">
+                    <input type="text" id="message-input" autocomplete="off" placeholder="Start typing...">
+                    <input type="file" id="file-input" accept="image/*, .txt, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, .zip, .rar, .7z, .js, .html, .py, .css, .sln, .cs, .java, .c, .cpp, .h, .hpp, .php, .sql, .json, .xml, .csv, .ts, .tsx, .jsx, .rb, .go, .swift">
+                    <button id="send"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Connexion au serveur Socket.io
+        const socket = io();
+    
+        // Références aux éléments HTML
+        const messagesContainer = document.getElementById('messages-content'); // Liste des messages
+        const inputElement = document.getElementById('message-input'); // Champ de saisie
+        const sendButton = document.getElementById('send'); // Bouton d'envoi
+        const fileInput = document.getElementById('file-input'); // Input pour les fichiers
+    
+        // Fonction pour afficher un message dans la liste
+        function afficherMessage(message, classe) {
+            const messageItem = document.createElement('li');
+            messageItem.textContent = message;
+            messageItem.className = classe; // Classe pour différencier les messages envoyés/reçus
+            messagesContainer.appendChild(messageItem);
+        }
+    
+// Gestion de l'envoi des messages
+        sendButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Empêche le rechargement de la page
+            
+            const file = fileInput.files[0]; // Récupère le fichier séléctionner
+            const message = inputElement.value.trim(); // Supprime les espaces inutiles
+    
+            if (!message && !file) return; // Ne rien faire si le message est vide
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    console.log('Fichier envoyé :', file.name);
+                    socket.emit('message', {type: 'file', content: reader.result, filename: file.name}); // Envoie le fichier au serveur
+                    afficherMessage(`Vous: ${file.name}`, 'envoye'); // Affiche le nom du fichier envoyé avec la classe "envoye"
+                };
+                reader.readAsDataURL(file);
+            }
+
+            if (message) {
+                console.log('Message envoyé :', message);
+    
+                afficherMessage(`Vous : ${message}`, 'envoye'); // Affiche le message envoyé avec la classe "envoye"
+                socket.emit('message', {type: 'text', content: message}); // Envoie le message au serveur
+            }
+
+            inputElement.value = ''; // Vide le champ de saisie
+            fileInput.value = ''; // Vide le champ de fichier
+        });
+
+
+// Réception des messages du serveur
+        
+        socket.on('message', (msg) => {
+            if (msg.type === 'text') {
+                afficherMessage(msg.content, 'recu');
+            } else if (msg.type === 'file') {
+                const messageItem = document.createElement('li');
+                messageItem.className = 'recu';
+                
+                const downloadLink = document.createElement('a');
+                downloadLink.href = msg.content;
+                downloadLink.download = msg.filename;
+                downloadLink.textContent = msg.filename;
+                downloadLink.className = 'file-link';
+                messageItem.appendChild(downloadLink);
+
+                messagesContainer.appendChild(messageItem);
+            }
+        });
+    </script>
+</body>
+</html>

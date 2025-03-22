@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.recu, .envoye {
+    color: white;
+    background-color: #f1f1f1;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.envoye {
+    background-color: #8A2BE2;
+    border-radius: 10px 10px 10px 0px;
+    margin-right: 40%;
+}
+
+.recu {
+    background-color: rgb(39, 39, 39);
+    border-radius: 10px 10px 0px 10px;
+    margin-left: 40%;
+}
+
