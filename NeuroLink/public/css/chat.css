@@ -28,4 +28,52 @@ ul {
     border-radius: 10px 10px 0px 10px;
     margin-left: 40%;
 }
+.global-send {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
 
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+#file-input {
+    display: none;
+}
+
+#file-input + label {
+    cursor: pointer;
+    padding: 10px 15px;  
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    margin: 0;
+}
+
+#send {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0;
+}
+
+#send:hover {
+    background-color: #218838;
+}
