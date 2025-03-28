@@ -73,6 +73,8 @@ main {
 
 form {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .global-send {
@@ -115,7 +117,7 @@ form {
     background-color: #000000;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
     margin: 0;
