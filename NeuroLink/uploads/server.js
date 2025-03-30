@@ -12,9 +12,14 @@ const io = new Server(server);
 // Servir les fichiers statiques (HTML, CSS, JS)
 app.use(express.static('public'));
 
+let users = [];
+
 // Gestion des connexions Socket.io
 io.on('connection', (socket) => {
     console.log('Un utilisateur s\'est connecté');
+
+    users.push(socket.id);
+    io.emit('user-connected', [...users]);
 
     // Écoute des messages envoyés par un client
     socket.on('message', (msg) => {
@@ -45,6 +50,8 @@ io.on('connection', (socket) => {
     // Gestion de la déconnexion
     socket.on('disconnect', () => {
         console.log('Un utilisateur s\'est déconnecté');
+        users = users.filter(id => id !== socket.id);
+        io.emit('user-connected', users);
     });
 });
 
@@ -54,5 +61,5 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Démarrage du serveur sur toutes les interfaces réseau
 const PORT = 4040;
 server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Serveur démarré sur http://0.0.0.0:${PORT}`);
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });

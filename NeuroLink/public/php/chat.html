@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="../css/chat.css"> <!--Le css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!--Pour l'icone-->
     <script src="/socket.io/socket.io.js"></script> <!--Le websocket-->
+
+    <!--Utiliser https://flowbite.com/icons/ pour les logo svg-->
 </head>
 <body>
     <main>
         <section class="left-tab"> <!--La partie gauche concernant le menu-->
         </section>
-        <section class="right-tab">  <!--La partie droite avec le chat-->
+        <section class="mid-tab">  <!--La partie droite avec le chat-->
             <div>   <!--Message affichés-->
                 <div id="messages-container">
                     <div id="messages">
@@ -22,38 +24,70 @@
             </div>
             <div class="global-send">   <!--Input pour envoyer-->
                 <form action="">
-                    <input type="text" id="message-input" autocomplete="off" placeholder="Start typing...">
+                    <input type="text" id="message-input" autocomplete="off" placeholder="Send a message">
                     <input type="file" id="file-input" accept="image/*, .txt, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, .zip, .rar, .7z, .js, .html, .py, .css, .sln, .cs, .java, .c, .cpp, .h, .hpp, .php, .sql, .json, .xml, .csv, .ts, .tsx, .jsx, .rb, .go, .swift">
-                    <label for="file-input">📁</label>
+                    <label for="file-input">
+                        <svg class="w-[25px] h-[25px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 8H4m0-2v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z"/>
+                          </svg>                          
+                    </label>
                     <button id="send"><i class="fas fa-arrow-right"></i></button>
                 </form>
+            </div>
+        </section>
+        <section class="right-tab">
+            <div>   <!--Message affichés-->
+                <div id="messages-container">
+                    <h1 id="activite"></h1>
+                    <div id="messages">
+                        <ul id="connections-content"></ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
     <script>
 
+        // Références aux éléments HTML
+        const messagesContainer = document.getElementById('messages-content'); 
+        const inputElement = document.getElementById('message-input'); 
+        const sendButton = document.getElementById('send'); 
+        const fileInput = document.getElementById('file-input'); 
+        const connectionContainer = document.getElementById('connections-content');
+        const activite = document.getElementById('activite');
+
+        // petite animation
         function scrollToBottom() {
             const messagesContainer = document.getElementById('messages-container');
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
+
         // Connexion au serveur Socket.io
         const socket = io();
-    
-        // Références aux éléments HTML
-        const messagesContainer = document.getElementById('messages-content'); // Liste des messages
-        const inputElement = document.getElementById('message-input'); // Champ de saisie
-        const sendButton = document.getElementById('send'); // Bouton d'envoi
-        const fileInput = document.getElementById('file-input'); // Input pour les fichiers
+
+        // Affichage des connexions
+        socket.on('user-connected', (users) => {
+            console.log('Données reçues:', users);
+            connectionContainer.innerHTML = '';
+            if (Array.isArray(users)) {
+                activite.innerHTML = `Activité - ${users.length}`;
+                users.forEach((user) => {
+                    const connectionItem = document.createElement('li');
+                    connectionItem.textContent = `${user} est connecté`;
+                    connectionContainer.appendChild(connectionItem);
+                });
+            }
+        });
     
         // Fonction pour afficher un message dans la liste
         function afficherMessage(message, classe) {
             const messageItem = document.createElement('li');
             messageItem.textContent = message;
-            messageItem.className = classe; // Classe pour différencier les messages envoyés/reçus
+            messageItem.className = classe;
             messagesContainer.appendChild(messageItem);
-        }
+        };
     
-// Gestion de l'envoi des messages
+        // Gestion de l'envoi des messages
         sendButton.addEventListener('click', (e) => {
             e.preventDefault(); // Empêche le rechargement de la page
             
@@ -66,8 +100,8 @@
                 const reader = new FileReader();
                 reader.onload = () => {
                     console.log('Fichier envoyé :', file.name);
-                    socket.emit('message', {type: 'file', content: reader.result, filename: file.name}); // Envoie le fichier au serveur
-                    afficherMessage(`Vous: ${file.name}`, 'envoye'); // Affiche le nom du fichier envoyé avec la classe "envoye"
+                    socket.emit('message', {type: 'file', content: reader.result, filename: file.name});
+                    afficherMessage(`Vous: ${file.name}`, 'envoye');
                 };
                 reader.readAsDataURL(file);
             }
@@ -75,17 +109,16 @@
             if (message) {
                 console.log('Message envoyé :', message);
     
-                afficherMessage(`Vous : ${message}`, 'envoye'); // Affiche le message envoyé avec la classe "envoye"
-                socket.emit('message', {type: 'text', content: message}); // Envoie le message au serveur
+                afficherMessage(`Vous : ${message}`, 'envoye'); 
+                socket.emit('message', {type: 'text', content: message});
             }
 
-            inputElement.value = ''; // Vide le champ de saisie
-            fileInput.value = ''; // Vide le champ de fichier
+            inputElement.value = ''; 
+            fileInput.value = ''; 
         });
 
 
-// Réception des messages du serveur
-        
+        // Réception des messages du serveur
         socket.on('message', (msg) => {
             if (msg.type === 'text') {
                 afficherMessage(msg.content, 'recu');
