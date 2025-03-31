@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="../css/chat.css"> <!--Le css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!--Pour l'icone-->
     <script src="/socket.io/socket.io.js"></script> <!--Le websocket-->
-
+    <script src="../js/script.js"></script> <!--Pour les animations etc-->
     <!--Utiliser https://flowbite.com/icons/ pour les logo svg-->
 </head>
 <body>
     <main>
         <section class="left-tab"> <!--La partie gauche concernant le menu-->
+            <div>   <!--Message affichés-->
+                <div id="connection-container">
+                    <h1 id="activite"></h1>
+                    <div>
+                        <ul id="connections-content"></ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p></p>
+                    <button>
+                      </button>
+                </div>
+            </div>
         </section>
         <section class="mid-tab">  <!--La partie droite avec le chat-->
             <div>   <!--Message affichés-->
@@ -35,16 +50,6 @@
                 </form>
             </div>
         </section>
-        <section class="right-tab">
-            <div>   <!--Message affichés-->
-                <div id="messages-container">
-                    <h1 id="activite"></h1>
-                    <div id="messages">
-                        <ul id="connections-content"></ul>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
     <script>
 
@@ -55,12 +60,6 @@
         const fileInput = document.getElementById('file-input'); 
         const connectionContainer = document.getElementById('connections-content');
         const activite = document.getElementById('activite');
-
-        // petite animation
-        function scrollToBottom() {
-            const messagesContainer = document.getElementById('messages-container');
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
 
         // Connexion au serveur Socket.io
         const socket = io();
@@ -73,7 +72,8 @@
                 activite.innerHTML = `Activité - ${users.length}`;
                 users.forEach((user) => {
                     const connectionItem = document.createElement('li');
-                    connectionItem.textContent = `${user} est connecté`;
+                    connectionItem.textContent = `${user}`;
+                    connectionItem.className = 'connections';
                     connectionContainer.appendChild(connectionItem);
                 });
             }
@@ -132,7 +132,6 @@
                 downloadLink.textContent = msg.filename;
                 downloadLink.className = 'file-link';
                 messageItem.appendChild(downloadLink);
-
                 messagesContainer.appendChild(messageItem);
             }
             scrollToBottom();

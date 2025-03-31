@@ -13,8 +13,8 @@ main {
 }
 
 .left-tab {
-    width: 30%;
-    background-color: black;
+    width: 20%;
+    background-color: rgb(17, 19, 34);
     padding: 20px;
 }
 
@@ -70,7 +70,7 @@ main {
 }
 
 .envoye {
-    background-color: #8A2BE2;
+    background-color: #565257;
     color: white;
     border-radius: 10px 10px 10px 0;
     margin-right: 30%; /* Aligne les messages envoyés à droite */
@@ -92,7 +92,7 @@ form {
 .global-send {
     position: fixed;
     bottom: 20px;
-    left: 50%;
+    left: 55%;
     width: 30%;
     transform: translateX(-50%);
     display: flex;
@@ -133,4 +133,24 @@ form {
     cursor: pointer;
     font-size: 16px;
     margin: 0;
+}
+
+.file-link {
+    color: white;
+}
+
+#connections-content {
+    padding: 0;
+}
+
+#connection-container h1 {
+    font-size: 20px;
+    color: #87899e;
+    font-weight: normal;
+}
+
+.connections {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
 }
