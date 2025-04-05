@@ -1,68 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroLink - </title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <div>
-            <p>NeuroLink</p>
+        <div class="logo">
+            <a href="index.html"><img src="" alt=""> NeuroLink</a>
         </div>
-        <div class="nav-links">
+        <div class="nav">
             <div>
-                <a href="../index.html" id="home-btn">Home</a>
+                <a href="index.html">Accueil</a>
             </div>
             <div>
-                <a href="about.html" id="about-btn">About</a>
+                <a href="html/about.html">À propos</a>
             </div>
             <div>
-                <a href="rules.html" id="rules-btn">Rules</a>
+             <a href="html/conditions.html">Conditions</a>
             </div>
         </div>
-        <div>
-            <a href="" class="sign-in">Sign in</a>
+        <div class="connexion">
+            <a href="php/connexion.html">Se connecter</a>
         </div>
     </header>
     <main>
-        <div>
-            <h1>NeuroLink - <br>Un lien direct entre les esprits</h1>
-            <p>Échangez vos idées à la vitesse de l’éclair, dans un espace <br> où l’humain et la technologie ne font plus qu’un. Bienvenue <br> dans l’ère de la connexion absolue.</p>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-txt">
-            <div class="footer-txt-first">
-                <p>Stay connected and chat with your peers.</p>
-                <a href="php/chat.html">Open chat</a>
+        <div class="title">
+            <div class="title-text">
+                <h1>NeuroLink - <br>Un lien direct <br>entre les esprits</h1>
+                <p>Échange des idées à la vitesse de la lumière, dans un espace <br>où les humains et la technologie ne font qu'un. Bienvenue <br>dans l'air de la connexion absolue.</p>
+            </div>
+            <div>
+                <img src="" alt="">
             </div>
         </div>
-        <div class="footer-img">
-            <img src="img/DNA.png" alt="" width="1200px">
+        <div class="open-chat">
+            <a href="php/chat.html">Ouvrir NeuroLink</a>
         </div>
-        <hr>
-        <div class="footer-last">
-            <p>NeuroLink</p>
+    </main>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Un espace à nous, rien qu’à nous</h2><br>
+                        <p>Ce chat n’est pas public, il est réservé uniquement aux gens de notre classe.
+                            Pas de spam, pas de pub, pas d'inconnus. Juste nous, avec un espace où on peut échanger rapidement, se filer des infos, s’entraider ou juste papoter.
+                            Il est là quand t’en as besoin, sans distraire quand t’en as pas envie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Un chat qui s’adapte à ton style</h2><br>
+                        <p>Envie d’un thème sombre pour moins te cramer les yeux ? Ou peut-être d’un camouflage discret pour que le prof pense que tu prends des notes ? T’inquiète, on a prévu le coup.
+                            Change l’apparence du chat en un clic, choisis ton ambiance, et active le mode “furtif” pour que tout ressemble à une prise de notes ou un site normal.
+                            Pratique quand tu veux rester connecté sans te faire griller.
+                        </p>
+                    </div>
+                </div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside> <!--Le marquee-->
+
+    </aside>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Échange de fichiers, messages et même du code</h2><br>
+                        <p>Envoie un PDF, colle un bout de code ou partage une image — tout passe facilement.
+                            Que tu bosses sur un projet de groupe ou que t’aies juste besoin d’un retour rapide, le chat est là pour centraliser les échanges, sans prise de tête.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside class="aside-max">
+        <div>
+            <div>
+                <h1>Vous ne pouvez plus faire défiler. <br>Aller mieux discuter.</h1>
+            </div>
+            <div>
+                <a href="">Go chatter</a>
+            </div>
+        </div>
+    </aside>
+    <footer>
+        <div>
+            <div>
+                <h3>NeuroLink</h3>
+                <h4>Fait avec ❤ par Yassine, Théo et Johann</h4>
+                <p>2025 &copy; Tous Droits Réservés</p>
+            </div>
+            <div>
+                <p>Naviguation</p>
+                <a href="">À propos</a>
+                <a href="">Conditions</a>
+                <a href="">Se connecter</a>
+            </div>
+        </div>
+        <div>
+            <h1>NeuroLink</h1>
         </div>
     </footer>
-    <script>
-        function getFileName() {
-            const path = window.location.pathname;
-            const fileName = path.substring(path.lastIndexOf('/') + 1);
-            return fileName;
-        }
-    
-        const currentFile = getFileName();
-    
-        if (currentFile === 'about.html') {
-            document.getElementById('about-btn').className = 'btn-animation';
-        } else if (currentFile === 'rules.html') {
-            document.getElementById('rules-btn').className = 'btn-animation';
-        } else {
-            document.getElementById('home-btn').className = 'btn-animation';
-        }
-    </script>
 </body>
 </html>

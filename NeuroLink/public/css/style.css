@@ -1,148 +1,189 @@
 * {
     margin: 0;
-    user-select: none;
 }
 
 body {
-    background-image: url('../img/Brain.jpg');
-    background-size: contain;
-    background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Partie haute de la page */
 header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2%;
+    justify-content: center;
+    padding: 30px 50px;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    min-height: 90.5vh;
-    padding: 0 0 0 3%;
-}
-
-main>div {
-    padding: 0 0 7% 0;
-    animation: appear 2s forwards;
-}
-
-@keyframes appear {
-    0% {
-        opacity: 0;
-    } 100% {
-        opacity: 1;
-    }
-}
-
-main h1 {
-    font-size: 2.7vw;
-    margin-bottom: 30px;
-}
-
-main p {
-    font-size: 1.3vw;
-}
-
-.nav-links {
+header div {
     display: flex;
     justify-content: space-between;
-    width: 19vw;
+}
+
+header>div>div {
+    padding: 15px;
 }
 
 a {
     text-decoration: none;
-    font-size: 0.9vw;
-    padding: 15px 30px 15px 30px;
-    color:  black;
-}
-
-.btn-animation {
-    background-color: black;
-    color: white;
-    border-radius: 100px;
-}
-
-.sign-in {
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-}
-
-footer {
-    background-color: black;
-    color: white;
-    padding: 5%;
-}
-
-.footer-img {
-    display: flex;
-    justify-content: center;
-    padding: 5%;
-}
-
-.footer-txt {
-    text-align: center;
-}
-
-.footer-txt-first p {
-    font-size: 3.5vw;
-    margin-bottom: 2%;
-}
-
-footer a {
-    color: white;
-}
-
-.footer-txt-first a {
-    position: relative;
-    z-index: 1;
-    border: 1px solid white;
-    border-radius: 100px;
-    padding: 10px 20px;
-    margin-bottom: 2%;
-    display: inline-block;
-    overflow: hidden;
-    transition: color 0.3s ease-in-out;
-}
-
-.footer-txt-first a::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 0%;
-    bottom: 0;
-    left: 0;
-    background-color: white;
-    transition: height 0.3s ease-in-out;
-    z-index: -1;
-}
-
-.footer-txt-first a:hover::before {
-    height: 100%;
-}
-
-.footer-txt-first a:hover {
+    font-size: 20px;
     color: black;
 }
 
-hr {
-    margin-top: 1%;
-    width: 100%;
+.logo {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    padding: 15px;
 }
 
-.footer-last p {
-    margin-top: 3%;
-    font-size: 15vw;
-    font-weight: 600;
+.nav a {
+    margin: 0 20px;
+}
+
+.connexion {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 13px;
+}
+
+/* Main (Partie principale) */
+
+.title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.title h1 {
+    font-size: 70px;
+    font-weight: 800;
+    line-height: 70px;
+    margin-bottom: 1%;
+    color: black;
+}
+
+.title p {
+    font-size: 20px;
+    line-height: 25px;
+    color: black;
+}
+
+.title-text {
+    width: 25%;
+    margin-right: -50%;
+}
+
+.open-chat {
+    display: flex;
+    justify-content: center;
+}
+
+.open-chat>a {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin-top: 2%;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.open-chat>a>svg {
+    position: relative;
+    transform: translateY(15%);
+    margin-left: 10px;
+}
+
+.open-chat>a:hover {
+    background-color: rgb(36, 36, 36);
+}
+
+/* Partie des bulles */
+
+.aside-total-text {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.aside-total-text>div {
+    padding: 20px;
+    width: 57%;
+    border-radius: 100px;
+    background-color: grey;
+}
+
+.aside-total-text>div>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aside-img {
+    border-radius: 30px;
+}
+
+.aside-text {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    padding: 50px;
+    color: white;
+}
+
+.aside-text h2 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 55px;
+}
+
+.aside-text p {
+    font-size: 20px;
+}
+
+/* Fin des aside */
+.aside-max {
     text-align: center;
-    color: rgba(214, 144, 255, 0.432);
+    margin: 7% 7% 13% 7%;
 }
 
-.footer-last p:hover {
-    color: rgb(214, 144, 255);
+.aside-max h1 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 70px;
+    margin-bottom: 3%;
+}
+
+.aside-max a {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin-top: 2%;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.aside-max a>svg {
+    position: relative;
+    transform: translateY(15%);
+    margin-left: 10px;
+}
+
+.aside-max a:hover {
+    background-color: rgb(36, 36, 36);
+}
+
+/*Footer /Pied de page*/
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+
+footer h1 {
+    font-size: 22rem;
+    font-weight: 800;
 }

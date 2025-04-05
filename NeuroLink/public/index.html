@@ -1,85 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroLink - Connect with your classmates</title>
+    <title>NeuroLink - Accueil</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/droid.ico" type="image/x-icon">
 </head>
 <body>
     <header>
-        <div>
-            <p>NeuroLink</p>
+        <div class="logo">
+            <a href="index.html"><img src="" alt=""> NeuroLink</a>
         </div>
-        <div class="nav-links">
+        <div class="nav">
             <div>
-                <a href="index.html" id="home-btn">Home</a>
+                <a href="index.html">Accueil</a>
             </div>
             <div>
-                <a href="html/about.html" id="about-btn">About</a>
+                <a href="html/about.html">À propos</a>
             </div>
             <div>
-                <a href="html/rules.html" id="rules-btn">Rules</a>
+             <a href="html/conditions.html">Conditions</a>
             </div>
         </div>
-        <div>
-            <a href="php/connexion.html" class="sign-in">Sign in</a>
+        <div class="connexion">
+            <a href="php/connexion.html">Se connecter</a>
         </div>
     </header>
     <main>
-        <div>
-            <h1>NeuroLink - <br>A direct link between minds</h1>
-            <p>Exchange ideas at lightning speed, in a space  <br> where humans and technology become one. Welcome<br> to the era of absolute connection.</p>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-txt">
-            <div class="footer-txt-first">
-                <p>Stay connected and chat with your peers.</p>
-                <a href="php/chat.html">Open chat</a>
+        <div class="title">
+            <div class="title-text">
+                <h1>NeuroLink - <br>Un lien direct <br>entre les esprits</h1>
+                <p>Échange des idées à la vitesse de la lumière, dans un espace <br>où les humains et la technologie ne font qu'un. Bienvenue <br>dans l'air de la connexion absolue.</p>
             </div>
             <div>
-                <p>&copy; NeuroLink - 2025</p>
+                <img src="img/pc.png" alt="" width="700px">
             </div>
         </div>
-        <div class="footer-img">
-            <img src="img/DNA.png" alt="" width="1200px">
+        <div class="open-chat">
+            <a href="php/chat.html">Ouvrir NeuroLink
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.597 3.2A1 1 0 0 0 7.04 4.289a3.49 3.49 0 0 1 .057 1.795 3.448 3.448 0 0 1-.84 1.575.999.999 0 0 0-.077.094c-.596.817-3.96 5.6-.941 10.762l.03.049a7.73 7.73 0 0 0 2.917 2.602 7.617 7.617 0 0 0 3.772.829 8.06 8.06 0 0 0 3.986-.975 8.185 8.185 0 0 0 3.04-2.864c1.301-2.2 1.184-4.556.588-6.441-.583-1.848-1.68-3.414-2.607-4.102a1 1 0 0 0-1.594.757c-.067 1.431-.363 2.551-.794 3.431-.222-2.407-1.127-4.196-2.224-5.524-1.147-1.39-2.564-2.3-3.323-2.788a8.487 8.487 0 0 1-.432-.287Z"/>
+                </svg>
+            </a>
         </div>
-        <hr>
-        <div class="footer-last">
-            <p>NeuroLink</p>
+    </main>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Un espace à nous, rien qu’à nous</h2><br>
+                        <p>Ce chat n’est pas public, il est réservé uniquement aux gens de notre classe.
+                            Pas de spam, pas de pub, pas d'inconnus. Juste nous, avec un espace où on peut échanger rapidement, se filer des infos, s’entraider ou juste papoter.
+                            Il est là quand t’en as besoin, sans distraire quand t’en as pas envie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Un chat qui s’adapte à ton style</h2><br>
+                        <p>Envie d’un thème sombre pour moins te cramer les yeux ? Ou peut-être d’un camouflage discret pour que le prof pense que tu prends des notes ? T’inquiète, on a prévu le coup.
+                            Change l’apparence du chat en un clic, choisis ton ambiance, et active le mode “furtif” pour que tout ressemble à une prise de notes ou un site normal.
+                            Pratique quand tu veux rester connecté sans te faire griller.
+                        </p>
+                    </div>
+                </div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside> <!--Le marquee-->
+
+    </aside>
+    <aside class="aside-total-text">
+        <div>
+            <div>
+                <div class="aside-img">
+                    <img src="" alt="">
+                </div>
+                <div class="aside-text">
+                    <div>
+                        <h2>Échange de fichiers, messages et même du code</h2><br>
+                        <p>Envoie un PDF, colle un bout de code ou partage une image — tout passe facilement.
+                            Que tu bosses sur un projet de groupe ou que t’aies juste besoin d’un retour rapide, le chat est là pour centraliser les échanges, sans prise de tête.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside class="aside-max">
+        <div>
+            <div>
+                <h1>Vous ne pouvez plus faire défiler. <br>Aller mieux discuter.</h1>
+            </div>
+            <div>
+                <a href="">Let's go
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.597 3.2A1 1 0 0 0 7.04 4.289a3.49 3.49 0 0 1 .057 1.795 3.448 3.448 0 0 1-.84 1.575.999.999 0 0 0-.077.094c-.596.817-3.96 5.6-.941 10.762l.03.049a7.73 7.73 0 0 0 2.917 2.602 7.617 7.617 0 0 0 3.772.829 8.06 8.06 0 0 0 3.986-.975 8.185 8.185 0 0 0 3.04-2.864c1.301-2.2 1.184-4.556.588-6.441-.583-1.848-1.68-3.414-2.607-4.102a1 1 0 0 0-1.594.757c-.067 1.431-.363 2.551-.794 3.431-.222-2.407-1.127-4.196-2.224-5.524-1.147-1.39-2.564-2.3-3.323-2.788a8.487 8.487 0 0 1-.432-.287Z"/>
+                </svg>
+                </a>
+            </div>
+        </div>
+    </aside>
+    <footer>
+        <div>
+            <div>
+                <div>
+                    <h3>NeuroLink</h3>
+                    <h4>Fait avec ❤ par Yassine, Théo et Johann</h4>
+                    <p>2025 &copy; Tous Droits Réservés</p>
+                </div>
+                <div>
+                    <p>Naviguation</p>
+                    <a href="">À propos</a>
+                    <a href="">Conditions</a>
+                    <a href="">Se connecter</a>
+                </div>
+            </div>
+            <div>
+                <h1>NeuroLink</h1>
+            </div>
         </div>
     </footer>
     <script>
-        function getFileName() {
-            const path = window.location.pathname;
-            const fileName = path.substring(path.lastIndexOf('/') + 1);
-            return fileName;
-        }
-    
-        const currentFile = getFileName();
-    
-        if (currentFile === 'about.html') {
-            document.getElementById('about-btn').className = 'btn-animation';
-        } else if (currentFile === 'rules.html') {
-            document.getElementById('rules-btn').className = 'btn-animation';
-        } else {
-            document.getElementById('home-btn').className = 'btn-animation';
-        }
-
-        let scrollSpeed = 1;
-        let interval = setInterval(() => {
-            window.scrollBy(0, scrollSpeed); 
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                clearInterval(interval); 
-            }
-        }, 10);
-
-        document.addEventListener('wheel', (e) => {
-            if (event.deltaY > 0 || event.deltaY < 0) {
-                clearInterval(interval);
-            }
-        });
     </script>
 </body>
 </html>

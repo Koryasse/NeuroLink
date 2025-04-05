@@ -15,7 +15,7 @@ main {
 .left-tab {
     width: 20%;
     background-color: rgb(0, 0, 0);
-    padding: 20px;
+    padding: 40px;
 }
 
 .mid-tab {
@@ -145,7 +145,7 @@ form {
 
 #connection-container h1 {
     font-size: 20px;
-    color: #c6c9e6;
+    color: white;
     font-weight: normal;
 }
 
@@ -156,10 +156,14 @@ form {
 }
 
 .parameter {
+    position: fixed;
+    bottom: 20px;
+    width: 18%;
     display: flex;
     align-items: center;
-    padding: 50px 15px 30px 30px;
-    border-radius: 20px;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 15px;
     color: white;
     background-color: #161616;
 }
@@ -168,4 +172,43 @@ form {
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.menu-user-list {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    left: 10%;
+    background-color: rgba(53, 53, 53, 0.925);
+    border-radius: 15px;
+    width: 10%;
+    padding: 10px;
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.151);
+    margin: 10px -10px;
+}
+
+.menu-user-list button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    padding: 20px 20px 20px 13px;
+}
+
+.menu-user-list div {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding-left: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.menu-user-list div:hover {
+    background-color: rgb(77, 77, 77);
 }
