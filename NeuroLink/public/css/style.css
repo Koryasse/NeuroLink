@@ -1,16 +1,22 @@
+/* Globalité */
 * {
     margin: 0;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+img {
+    user-select: none;
 }
 
 /* Partie haute de la page */
 header {
     display: flex;
     justify-content: center;
-    padding: 30px 50px;
+    padding: 30px 50px 5% 50px;
 }
 
 header div {
@@ -24,7 +30,7 @@ header>div>div {
 
 a {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 23px;
     color: black;
 }
 
@@ -36,25 +42,76 @@ a {
 }
 
 .nav a {
+    position: relative;
+    text-decoration: none;
+    font-size: 23px;
     margin: 0 20px;
+    color: black;
+    font-weight: 700;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 10px;
 }
 
-.connexion {
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.connexion a {
     position: fixed;
     top: 30px;
     right: 30px;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 20px;
     padding: 13px;
+    color: black;
+    background-color: transparent;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.connexion a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: black;
+    z-index: -1000;
+    transition: width 0.3s ease-in-out;
+}
+
+.connexion a:hover {
+    color: white;
+}
+
+.connexion a:hover::before {
+    width: 100%;
 }
 
 /* Main (Partie principale) */
-
 .title {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 2%;
+}
+
+.img-pc {
+    margin-top: 5%;
 }
 
 .title h1 {
@@ -73,7 +130,7 @@ a {
 
 .title-text {
     width: 25%;
-    margin-right: -50%;
+    margin-right: -45%;
 }
 
 .open-chat {
@@ -84,7 +141,7 @@ a {
 .open-chat>a {
     background-color: black;
     color: white;
-    padding: 20px;
+    padding: 20px 20px 23px 20px;
     margin-top: 2%;
     border-radius: 20px;
     transition: background-color 0.2s ease-in-out;
@@ -101,18 +158,17 @@ a {
 }
 
 /* Partie des bulles */
-
 .aside-total-text {
     display: flex;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .aside-total-text>div {
-    padding: 20px;
+    padding: 30px;
     width: 57%;
     border-radius: 100px;
-    background-color: grey;
+    background-color: black;
 }
 
 .aside-total-text>div>div {
@@ -121,7 +177,11 @@ a {
 }
 
 .aside-img {
-    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border-radius: 75px;
+    background-color: white;
 }
 
 .aside-text {
@@ -142,10 +202,45 @@ a {
     font-size: 20px;
 }
 
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    color: #fff;
+    padding: 3rem 0;
+    margin-top: 10%;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: scroll 35s linear infinite;
+}
+
+.marquee-content span {
+    font-size: 5rem;
+    font-weight: 800;
+    padding-right: 2rem;
+    white-space: nowrap;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 /* Fin des aside */
 .aside-max {
     text-align: center;
-    margin: 7% 7% 13% 7%;
+    margin: 7% 7% 3% 7%;
 }
 
 .aside-max h1 {
@@ -174,8 +269,13 @@ a {
     background-color: rgb(36, 36, 36);
 }
 
-/*Footer /Pied de page*/
+.image-family {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -5px;
+}
 
+/* Footer / Pied de page */
 footer {
     display: flex;
     justify-content: center;
@@ -186,4 +286,183 @@ footer {
 footer h1 {
     font-size: 22rem;
     font-weight: 800;
+}
+
+footer h4 {
+    font-size: 20px;
+}
+
+footer p {
+    font-size: 20px;
+    color: rgba(173, 173, 173, 0.993);
+}
+
+footer a {
+    color: white;
+    margin-top: 20px;
+}
+
+footer a:hover {
+    color: rgba(255, 255, 255, 0.801);
+    text-decoration: underline;
+}
+
+footer>div>div {
+    display: flex;
+    justify-content: space-around;
+    padding: 4% 0;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Media Queries pour mobile (écrans < 768px) */
+@media screen and (max-width: 768px) {
+    /* Header */
+    header {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .logo {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav a {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .connexion a {
+        position: static;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    /* Main */
+    .title {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+
+    .title-text {
+        width: 90%;
+        margin-right: 0;
+    }
+
+    .title h1 {
+        font-size: 40px;
+        line-height: 45px;
+    }
+
+    .title p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .img-pc img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .open-chat>a {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Aside */
+    .aside-total-text {
+        margin-top: 15%;
+    }
+
+    .aside-total-text>div {
+        width: 90%;
+        padding: 20px;
+        border-radius: 50px;
+    }
+
+    .aside-total-text>div>div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aside-img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .aside-img img {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .aside-text {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .aside-text h2 {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .aside-text p {
+        font-size: 16px;
+    }
+
+    /* Marquee */
+    .marquee {
+        padding: 1.5rem 0;
+    }
+
+    .marquee-content span {
+        font-size: 2rem;
+        padding-right: 1rem;
+    }
+
+    /* Aside-max */
+    .aside-max h1 {
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    .aside-max a {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Image Family */
+    .image-family img {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    /* Footer */
+    footer h1 {
+        font-size: 10rem;
+    }
+
+    footer>div>div {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-nav {
+        margin-top: 20px;
+    }
+
+    footer h4, footer p, footer a {
+        font-size: 16px;
+    }
 }
