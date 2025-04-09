@@ -1,3 +1,4 @@
+/* Globalité */
 * {
     margin: 0;
 }
@@ -26,12 +27,7 @@ main {
     padding: 20px;
 }
 
-.right-tab {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-}
-
+/* Concernant les messages envoyés et les inputs */
 #messages-container {
     overflow-y: auto;
 }
@@ -52,14 +48,9 @@ main {
     margin: 0;
 }
 
-#connections-content {
-    color: black;
-    list-style-type: none;
-}
-
 .recu, .envoye {
     word-wrap: break-word;
-    word-break: break-word; 
+    word-break: break-word;
     padding: 10px 15px;
     margin: 10px;
     border-radius: 20px;
@@ -73,14 +64,14 @@ main {
     background-color: #565257;
     color: white;
     border-radius: 10px 10px 10px 0;
-    margin-right: 30%; /* Aligne les messages envoyés à droite */
+    margin-right: 30%;
 }
 
 .recu {
     background-color: #222222;
     color: white;
     border-radius: 10px 10px 0 10px;
-    margin-left: 30%; /* Aligne les messages reçus à gauche */
+    margin-left: 30%;
 }
 
 form {
@@ -139,8 +130,10 @@ form {
     color: white;
 }
 
+/* Concernant la partie gauche avec les connexions et le menus */
 #connections-content {
     padding: 0;
+    list-style-type: none;
 }
 
 #connection-container h1 {
@@ -181,7 +174,7 @@ form {
     left: 10%;
     background-color: rgba(53, 53, 53, 0.925);
     border-radius: 15px;
-    width: 10%;
+    width: 11%;
     padding: 10px;
 }
 

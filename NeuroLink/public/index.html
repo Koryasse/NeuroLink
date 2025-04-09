@@ -8,6 +8,7 @@
     <link rel="icon" href="img/" type="image/x-icon">
 </head>
 <body>
+    <!--Menu de navigation en haut-->
     <header>
         <div class="logo">
             <a href="index.html"><img src="" alt=""> NeuroLink</a>
@@ -19,14 +20,13 @@
             <div>
                 <a href="html/about.html">À propos</a>
             </div>
-            <div>
-             <a href="html/conditions.html">Conditions</a>
-            </div>
         </div>
         <div class="connexion">
             <a href="php/connexion.html">Se connecter</a>
         </div>
     </header>
+
+    <!--Titre + image-->
     <main>
         <div class="title">
             <div class="title-text">
@@ -45,6 +45,7 @@
             </a>
         </div>
     </main>
+    <!--Aside avec du texte stylé (1)-->
     <aside class="aside-total-text">
         <div>
             <div>
@@ -63,6 +64,7 @@
             </div>
         </div>
     </aside>
+    <!--Aside avec du texte stylé (2)-->
     <aside class="aside-total-text">
         <div>
             <div>
@@ -81,6 +83,7 @@
             </div>
         </div>
     </aside>
+    <!--Aside avec le marquee (le texte qui défile)-->
     <aside>
         <div class="marquee">
           <div class="marquee-content">
@@ -89,6 +92,7 @@
           </div>
         </div>
       </aside>
+    <!--Aside avec du texte stylé (3)-->
     <aside class="aside-total-text">
         <div>
             <div>
@@ -106,6 +110,7 @@
             </div>
         </div>
     </aside>
+    <!--Aside de fin-->
     <aside class="aside-max">
         <div>
             <div>
@@ -123,6 +128,7 @@
     <aside class="image-family">
         <img src="img/family.webp" alt="" width="300px">
     </aside>
+    <!--Footer-->
     <footer>
         <div>
             <div>
@@ -147,32 +153,5 @@
             </div>
         </div>
     </footer>
-    <script>
-        let scrolling = true;
-        function autoScroll() {
-            const scrollSpeed = 2;
-            const intervall = setInterval(() => {
-                if (!scrolling) {
-                    clearInterval(intervall);
-                    return;
-                }
-                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                    clearInterval(interval);
-                } else {
-                    window.scrollBy(0, scrollSpeed);
-                }
-            }, 20);
-        }
-
-        document.addEventListener('click', () => {
-            scrolling = false;
-        });
-
-        document.addEventListener('wheel', () => {
-            scrolling = false;
-        });
-
-        autoScroll();
-    </script>
 </body>
 </html>

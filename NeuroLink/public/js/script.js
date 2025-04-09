@@ -15,8 +15,7 @@ button.addEventListener('click', () => {
     }
 });
 
-// Au click de ses boutons
-
+// Variables concernant le petit menu du chat
 let back = document.getElementById('back-home');
 let appareance = document.getElementById('change-appareance');
 let furtif = document.getElementById('furtive-mode');
@@ -24,10 +23,12 @@ let deco = document.getElementById('disconnection');
 let totalAppareance = document.getElementById('total-change-appareance');
 let totalFurtiv = document.getElementById('total-furtive-mode');
 
+// Lorsque l'on clique sur "Retour à l'accueil"
 back.addEventListener('click', () => {
     window.location.href = '../index.html';
 });
 
+// Lorsque l'on clique sur "Changer l'apparance"
 let appBool = true;
 appareance.addEventListener('click', () => {
     if (appBool) {
@@ -45,6 +46,7 @@ appareance.addEventListener('click', () => {
     }
 });
 
+// Lorsque l'on clique sur "Mode furtif"
 let furtivBool = true;
 furtif.addEventListener('click', () => {
     
