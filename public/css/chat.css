@@ -1,0 +1,207 @@
+/* Globalité */
+* {
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.left-tab {
+    width: 20%;
+    background-color: rgb(0, 0, 0);
+    padding: 40px;
+}
+
+.mid-tab {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+/* Concernant les messages envoyés et les inputs */
+#messages-container {
+    overflow-y: auto;
+}
+
+#messages {
+    flex: 1;
+    padding: 10px;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#messages-content {
+    width: 70%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recu, .envoye {
+    word-wrap: break-word;
+    word-break: break-word;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    line-height: 1.4;
+    max-width: 50%;
+    text-align: left;
+}
+
+.envoye {
+    background-color: #565257;
+    color: white;
+    border-radius: 10px 10px 10px 0;
+    margin-right: 30%;
+}
+
+.recu {
+    background-color: #222222;
+    color: white;
+    border-radius: 10px 10px 0 10px;
+    margin-left: 30%;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.global-send {
+    position: fixed;
+    bottom: 20px;
+    left: 55%;
+    width: 30%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+#file-input {
+    display: none;
+}
+
+#file-input + label {
+    cursor: pointer;
+    padding: 10px 15px;  
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    margin: 0;
+}
+
+#send {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0;
+}
+
+.file-link {
+    color: white;
+}
+
+/* Concernant la partie gauche avec les connexions et le menus */
+#connections-content {
+    padding: 0;
+    list-style-type: none;
+}
+
+#connection-container h1 {
+    font-size: 20px;
+    color: white;
+    font-weight: normal;
+}
+
+.connections {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.parameter {
+    position: fixed;
+    bottom: 20px;
+    width: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    background-color: #161616;
+}
+
+.parameter button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-user-list {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    left: 10%;
+    background-color: rgba(53, 53, 53, 0.925);
+    border-radius: 15px;
+    width: 11%;
+    padding: 10px;
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.151);
+    margin: 10px -10px;
+}
+
+.menu-user-list button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    padding: 20px 20px 20px 13px;
+}
+
+.menu-user-list div {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding-left: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.menu-user-list div:hover {
+    background-color: rgb(77, 77, 77);
+}

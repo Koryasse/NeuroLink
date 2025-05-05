@@ -1,0 +1,367 @@
+/* Globalité */
+* {
+    margin: 0;
+}
+
+@font-face {
+    font-family: bold;
+    src: url('../font/Inter_28pt-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: regular;
+    src: url('../font/Inter_18pt-Regular.ttf');
+}
+
+body {
+    font-family: regular;
+    user-select: none;
+}
+
+img {
+    user-select: none;
+}
+
+h1, h2 {
+    font-family: bold;
+}
+
+/* Partie haute de la page */
+header {
+    display: flex;
+    justify-content: center;
+    padding: 30px 50px 0 50px;
+}
+
+header div {
+    display: flex;
+    justify-content: space-between;
+}
+
+header>div>div {
+    padding: 15px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 23px;
+    color: black;
+}
+
+.logo {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    padding: 15px;
+}
+
+.nav a {
+    position: relative;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 20px;
+    color: black;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.connexion a {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    border: 3px solid black;
+    border-radius: 30px;
+    padding: 13px;
+    color: black;
+    background-color: transparent;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.connexion a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: black;
+    z-index: -1000;
+    transition: width 0.3s ease-in-out;
+}
+
+.connexion a:hover {
+    color: white;
+}
+
+.connexion a:hover::before {
+    width: 100%;
+}
+
+/* Main (Partie principale) */
+.title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.img-droid {
+    margin-top: 5%;
+    margin-bottom: -17%;
+}
+
+.title h1 {
+    font-size: 70px;
+    font-weight: 800;
+    margin-bottom: 1%;
+    color: black;
+}
+
+.title p {
+    font-size: 20px;
+    line-height: 25px;
+    color: black;
+}
+
+.title-text {
+    width: 25%;
+    margin-right: -15%;
+    margin-top: 7%;
+}
+
+.open-chat {
+    margin-top: 15%;
+}
+
+.open-chat a {
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1;
+    font-family: sans-serif;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+    color: #fff;
+
+    height: 50px;
+    border-radius: 40px;
+    padding: 10px 20px;
+    position: relative;
+    min-width: 150px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.open-chat a:hover {
+    background-color: rgba(0, 0, 0, 0.829);
+}
+
+.btn-line {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+}
+
+.btn-line rect {
+    fill: none;
+    stroke: #000;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    rx: calc(30px);
+    x: .5;
+    y: .5;
+
+    stroke-dasharray: 100;
+    animation: dash 5s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 1000;
+    }
+}
+  
+
+/* Partie des bulles */
+aside h3 {
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.aside-total-text {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+#aside-total-text-left > div::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -40px;
+    width: 200px; /* Réduit pour mieux s'adapter au conteneur */
+    height: 200px;
+    filter: blur(50px); /* Flou réduit pour plus de clarté */
+    opacity: 0.7; /* Légèrement plus visible */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0) 65%);
+    z-index: 1; /* Derrière le contenu */
+}
+
+#aside-total-text-right > div::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -40px;
+    width: 200px; /* Réduit pour mieux s'adapter au conteneur */
+    height: 200px;
+    filter: blur(50px); /* Flou réduit pour plus de clarté */
+    opacity: 0.7; /* Légèrement plus visible */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0) 65%);
+    z-index: 1; /* Derrière le contenu */
+}
+
+.aside-total-text>div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    width: 70%;
+    border-radius: 100px;
+    background-color: rgb(7, 7, 7);
+}
+
+.aside-img {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border-radius: 75px;
+    background-color: white;
+}
+
+.aside-text {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    padding: 50px;
+    color: white;
+}
+
+.aside-text h2 {
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 55px;
+}
+
+.aside-text p {
+    font-size: 20px;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    color: #fff;
+    padding: 3rem 0;
+    margin-top: 10%;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: scroll 35s linear infinite;
+}
+
+.marquee-content span {
+    font-size: 4rem;
+    font-weight: 800;
+    padding-right: 2rem;
+    white-space: nowrap;
+    color: rgba(173, 173, 173, 0.993);
+}
+
+.marquee-content span:hover {
+    color: white;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Footer / Pied de page */
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+
+footer h1 {
+    font-size: 22rem;
+    font-weight: 800;
+    color: rgba(173, 173, 173, 0.993);
+}
+
+footer h1:hover {
+    color: white;
+}
+
+footer p {
+    font-size: 18px;
+    color: rgba(173, 173, 173, 0.993);
+}
+
+footer a {
+    color: rgba(173, 173, 173, 0.993);
+    font-size: 18px;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-links p {
+    margin: 0 12px;
+}
+
+footer>div>div {
+    display: flex;
+    justify-content: space-between;
+    padding: 4% 0 1% 0;
+}

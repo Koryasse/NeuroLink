@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discute avec tes camarades| NeuroLink</title>
+    <link rel="stylesheet" href="../css/chat.css"> <!--Le css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!--Pour l'icone-->
+    <script src="/socket.io/socket.io.js"></script> <!--Le websocket-->
+    <!--Utiliser https://flowbite.com/icons/ pour les logo svg-->
+</head>
+<body>
+    <main>
+         <!--La partie gauche concernant le menu-->
+        <section class="left-tab">
+            <div>   <!--Message affichés-->
+                <div id="connection-container">
+                    <h1 id="activite"></h1>
+                    <div>
+                        <ul id="connections-content"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-user-list" id="menu-user-list">
+                <div id="back-home">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="white" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
+                      </svg>                                           
+                    <button>Retour à l'accueil</button>
+                </div>
+                <div id="change-appareance">
+                    <div id="total-change-appareance">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m12.728 12.728L16.95 16.95M5 12H3m18 0h-2M7.05 16.95l-1.414 1.414M18.364 5.636 16.95 7.05M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/>
+                        </svg> 
+                    </div>                   
+                    <button>Changer l'apparance</button>
+                </div>
+                <div id="furtive-mode">
+                    <div id="total-furtive-mode">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                            <path stroke="white" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                        </svg>  
+                    </div>                                    
+                    <button>Mode furtif</button>
+                </div>
+                <hr>
+                <div id="disconnection">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+                      </svg>                      
+                    <button style="color: red;">Déconnexion</button>
+                </div>
+            </div>
+            <div>
+                <div class="parameter">
+                    <p id="user-text"></p>
+                    <button id="menu-user">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+                          </svg>                                                    
+                    </button>
+                </div>
+            </div>
+            <script src="../js/script.js"></script>
+        </section>
+
+        <!--La partie droite avec le chat-->
+        <section class="mid-tab">
+            <div>   <!--Message affichés-->
+                <div id="messages-container">
+                    <div id="messages">
+                        <ul id="messages-content"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="global-send">   <!--Input pour envoyer-->
+                <form action="">
+                    <input type="text" id="message-input" autocomplete="off" placeholder="Send a message">
+                    <input type="file" id="file-input" accept="image/*, .txt, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, .zip, .rar, .7z, .js, .html, .py, .css, .sln, .cs, .java, .c, .cpp, .h, .hpp, .php, .sql, .json, .xml, .csv, .ts, .tsx, .jsx, .rb, .go, .swift">
+                    <label for="file-input">
+                        <svg class="w-[25px] h-[25px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 8H4m0-2v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z"/>
+                          </svg>                          
+                    </label>
+                    <button id="send"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script>
+
+        // Références aux éléments HTML
+        const messagesContainer = document.getElementById('messages-content'); 
+        const inputElement = document.getElementById('message-input'); 
+        const sendButton = document.getElementById('send'); 
+        const fileInput = document.getElementById('file-input'); 
+        const connectionContainer = document.getElementById('connections-content');
+        const activite = document.getElementById('activite');
+        const userText = document.getElementById('user-text');
+
+        // Connexion au serveur Socket.io
+        const socket = io();
+
+        // Affichage des connexions
+        socket.on('user-connected', (users) => {
+            console.log('Données reçues:', users);
+            connectionContainer.innerHTML = '';
+            if (Array.isArray(users)) {
+                activite.innerHTML = `Personnes - ${users.length}`;
+                users.forEach((user) => {
+                    const connectionItem = document.createElement('li');
+                    connectionItem.textContent = `${user}`;
+                    connectionItem.style.color = 'white';
+                    userText.innerHTML = `${user}`;
+                    connectionItem.className = 'connections';
+                    connectionContainer.appendChild(connectionItem);
+                });
+            }
+        });
+    
+        // Fonction pour afficher un message dans la liste
+        function afficherMessage(message, classe) {
+            const messageItem = document.createElement('li');
+            messageItem.textContent = message;
+            messageItem.className = classe;
+            messagesContainer.appendChild(messageItem);
+        };
+    
+        // Gestion de l'envoi des messages
+        sendButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Empêche le rechargement de la page
+            
+            const file = fileInput.files[0]; // Récupère le fichier séléctionner
+            const message = inputElement.value.trim(); // Supprime les espaces inutiles
+    
+            if (!message && !file) return; // Ne rien faire si le message est vide
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    console.log('Fichier envoyé :', file.name);
+                    socket.emit('message', {type: 'file', content: reader.result, filename: file.name});
+                    afficherMessage(`Vous: ${file.name}`, 'envoye');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            if (message) {
+                console.log('Message envoyé :', message);
+    
+                afficherMessage(`Vous : ${message}`, 'envoye'); 
+                socket.emit('message', {type: 'text', content: message});
+            }
+
+            inputElement.value = ''; 
+            fileInput.value = ''; 
+        });
+
+
+        // Réception des messages du serveur
+        socket.on('message', (msg) => {
+            if (msg.type === 'text') {
+                afficherMessage(msg.content, 'recu');
+            } else if (msg.type === 'file') {
+                const messageItem = document.createElement('li');
+                messageItem.className = 'recu';
+                
+                const downloadLink = document.createElement('a');
+                downloadLink.href = msg.content;
+                downloadLink.download = msg.filename;
+                downloadLink.textContent = msg.filename;
+                downloadLink.className = 'file-link';
+                messageItem.appendChild(downloadLink);
+                messagesContainer.appendChild(messageItem);
+            }
+            scrollToBottom();
+        });
+    </script>
+</body>
+</html>

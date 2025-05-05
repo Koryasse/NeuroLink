@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bad-words": "^4.0.0",
+    "bad-words-es": "^1.0.0",
+    "express": "^4.21.2",
+    "leven": "^4.0.0",
+    "multer": "^1.4.5-lts.2",
+    "socket.io": "^4.8.1"
+  }
+}
