@@ -1,0 +1,124 @@
+
+
+@font-face {
+    font-family: bold;
+    src: url('../font/Inter_28pt-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: regular;
+    src: url('../font/Inter_18pt-Regular.ttf');
+}
+body {
+    font-family: regular;
+    user-select: none;
+    background-color: #000;
+    color:  white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.nav {
+    display: flex;
+}
+
+.nav>div {
+    padding: 0 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.nav a {
+    position: relative;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 20px;
+    color: white;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.connexion a {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border: 3px solid white;
+    border-radius: 30px;
+    padding: 13px;
+    color: white;
+    background-color: transparent;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.connexion a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    z-index: -1000;
+    transition: width 0.3s ease-in-out;
+}
+
+.connexion a:hover {
+    color: black;
+}
+
+.connexion a:hover::before {
+    width: 100%;
+}
+
+/* Partie Main */
+
+main {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: space-around;
+}
+.Pk
+{
+    padding: 10px;
+    border-radius: 25px;
+    
+    color: #9b9b9b;
+    font-size:large;
+    width: 40vw;
+}
+
