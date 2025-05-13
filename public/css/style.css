@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: regular;
+    font-family: Arial, Helvetica, sans-serif;
     user-select: none;
     background-color: #000;
     color:  white;
@@ -226,6 +226,16 @@ aside h3>img {
     background-color: rgba(94, 93, 93, 0.416);
     border: 1px solid rgb(102, 102, 102);
 }
+
+aside h2 {
+    font-size: 40px;
+    font-weight: 1000;
+}
+
+aside p {
+    font-size: 17px;
+}
+
 /* Aside 1 */
 .aside-furtif {
     margin-top: -70px;
@@ -239,8 +249,53 @@ aside h3>img {
 
 .aside-theme>div {
     text-align: center;
+    width: 50%;
+}
+
+.aside-theme>div>div {
+    height: 400px;
 }
 
 .aside-theme p {
     color: rgb(125, 125, 125);
 }
+
+/* Aside 3 (marquee) */
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
+    padding: 3rem 0;
+    margin: 4% 0;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: scroll 35s linear infinite;
+}
+
+.marquee-content span {
+    font-size: 4rem;
+    font-weight: 800;
+    padding-right: 2rem;
+    white-space: nowrap;
+    color: #ff338b63;
+}
+
+.marquee-content span:hover {
+    color: #FF338B;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    } 100% {
+        transform: translateX(-50%);
+    }
+}   
