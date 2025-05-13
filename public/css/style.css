@@ -47,7 +47,7 @@ a {
 .nav a {
     position: relative;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 17px;
     margin: 0 20px;
     color: white;
     display: inline-block;
@@ -115,3 +115,132 @@ main {
     justify-content: space-around;
 }
 
+main h1 {
+    font-size: 65px;
+}
+
+.title {
+    margin: 0 10%;
+}
+
+.open-chat {
+    margin-top: 15%;
+}
+
+.open-chat a {
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1;
+    font-family: sans-serif;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    color: black;
+
+    height: 50px;
+    border-radius: 40px;
+    padding: 10px 20px;
+    position: relative;
+    min-width: 150px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.open-chat a:hover {
+    background-color: rgb(199, 199, 199);
+}
+
+.btn-line {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+}
+
+.btn-line rect {
+    fill: none;
+    stroke: white;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    rx: calc(30px);
+    x: .5;
+    y: .5;
+
+    stroke-dasharray: 100;
+    animation: dash 5s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 1000;
+    }
+}
+
+/* Partie Aside (Bulles) */
+aside {
+    margin-top: 4%;
+}
+
+.aside-text, .aside-text-first {
+    border: 1px solid rgb(81, 81, 81);
+    padding: 50px 50px 43px 50px;
+    border-radius: 50px;
+    background-color: rgba(71, 71, 71, 0.416);
+    backdrop-filter: blur(7px);
+    margin: -40px 40px 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.aside-text-first {
+    display: flex;
+    justify-content: space-between;
+}
+
+aside h3 {
+    display: flex;
+    align-items: center;
+    border: 1px solid #FF338B;
+    border-radius: 50px;
+    padding: 13px;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: normal;
+    transition: background-color .2s ease-in-out;
+}
+
+aside h3:hover {
+    background-color: #ff338b1a;
+}
+
+aside h3>img {
+    filter: invert(1);
+    margin-right: 5px;
+}
+
+.aside-text:hover, .aside-text-first:hover {
+    background-color: rgba(94, 93, 93, 0.416);
+    border: 1px solid rgb(102, 102, 102);
+}
+/* Aside 1 */
+.aside-furtif {
+    margin-top: -70px;
+}
+
+/*Aside 2 */
+.aside-theme {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aside-theme>div {
+    text-align: center;
+}
+
+.aside-theme p {
+    color: rgb(125, 125, 125);
+}
