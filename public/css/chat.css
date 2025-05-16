@@ -23,22 +23,34 @@ main {
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    height: 100vh;
     padding: 20px;
+    position: relative;
 }
 
 /* Concernant les messages envoyés et les inputs */
 #messages-container {
+    position: fixed;
+    bottom: 90px; /* Adjust this value to control space between messages and input bar */
+    width: 60%;
+    max-height: calc(100vh - 140px);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#messages-container::-webkit-scrollbar {
+    display: none;
 }
 
 #messages {
-    flex: 1;
     padding: 10px;
-    margin-bottom: 2%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    width: 100%;
 }
 
 #messages-content {
@@ -46,6 +58,8 @@ main {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .recu, .envoye {
@@ -88,11 +102,12 @@ form {
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    
+    background-color: inherit; /* This will match the body background color */
+    z-index: 1000; /* Ensure input stays on top */
 }
 
 #message-input {

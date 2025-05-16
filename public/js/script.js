@@ -23,35 +23,39 @@ back.addEventListener('click', () => {
     window.location.href = '../index.html';
 });
 let color = true
-function changer()
-{
-    
-    if(color)
-    {
-        document.body.style.backgroundColor = "#1c1b1f"
-        mess.style.backgroundColor = "#1c1b1f"
-        
+function changer() {
+    if(color) {
+        // Dark mode
+        document.body.style.backgroundColor = "#1c1b1f";
+        mess.style.backgroundColor = "#1c1b1f";
         document.body.style.color = "white";
         document.getElementById("message-input").style.backgroundColor = "#1c1b1f";
-        document.getElementById("message-input").style.color="#ffffff"
+        document.getElementById("message-input").style.color = "#ffffff";
+        
+        // Add white border to message container
+        document.querySelector(".global-send").style.border = "2px solid #ffffff";
+        
         document.getElementById("file").innerHTML = `
             <svg class="w-[25px] h-[25px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 8H4m0-2v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z"/>
             </svg>`;
-        color= false
-    }
-    else
-    {
+            
+        color = false;
+    } else {
+        // Light mode
         document.body.style.backgroundColor = "#ffffff";
         mess.style.backgroundColor = "#ffffff";
         document.body.style.color = "black";
         document.getElementById("message-input").style.backgroundColor = "#ffffff";
         document.getElementById("message-input").style.color = "#000000";
+        
+        // Reset message container border to black
+        document.querySelector(".global-send").style.border = "2px solid #000000";
+        
         document.getElementById("file").innerHTML = `
         <svg class="w-[25px] h-[25px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 8H4m0-2v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z"/>
         </svg>`;
-        color=true
+        color = true;
     }
-    
 }
