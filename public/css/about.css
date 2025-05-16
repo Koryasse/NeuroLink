@@ -118,7 +118,10 @@ main {
     border-radius: 25px;
     
     color: #9b9b9b;
-    font-size:large;
+    font-size:30px;
     width: 40vw;
+}
+h1{
+    font-size:50px;
 }
 
