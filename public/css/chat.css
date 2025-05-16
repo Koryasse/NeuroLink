@@ -88,10 +88,11 @@ form {
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    
 }
 
 #message-input {
