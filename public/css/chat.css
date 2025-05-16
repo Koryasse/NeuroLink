@@ -170,11 +170,11 @@ form {
 .menu-user-list {
     display: none;
     position: fixed;
-    bottom: 10%;
-    left: 10%;
+    bottom: 15%;
+    left: 8%;
     background-color: rgba(53, 53, 53, 0.925);
     border-radius: 15px;
-    width: 11%;
+    width: 14%;
     padding: 10px;
 }
 

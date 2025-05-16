@@ -1,9 +1,3 @@
-// petite animation
-function scrollToBottom() {
-    const messagesContainer = document.getElementById('messages-container');
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
 // Va afficher les fonctionnalités
 let menu = document.getElementById('menu-user-list');
 let button = document.getElementById('menu-user');

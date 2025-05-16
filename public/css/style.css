@@ -180,11 +180,7 @@ main h1 {
 }
 
 /* Partie Aside (Bulles) */
-aside {
-    margin-top: 4%;
-}
-
-.aside-text, .aside-text-first {
+.first-aside {
     border: 1px solid rgb(81, 81, 81);
     padding: 50px 50px 43px 50px;
     border-radius: 50px;
@@ -196,68 +192,104 @@ aside {
     color: white;
 }
 
-.aside-text-first {
-    display: flex;
-    justify-content: space-between;
+.first-aside:hover {
+    background-color: rgba(77, 77, 77, 0.47);
+    border: 1px solid rgb(129, 128, 128);
 }
 
-aside h3 {
+.first-aside h2 {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.first-aside p {
+    line-height: 25px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: rgb(125, 125, 125);
+}
+
+.left img {
+    margin-bottom: -80px;
+}
+
+.right {
     display: flex;
     align-items: center;
-    border: 1px solid #FF338B;
-    border-radius: 50px;
-    padding: 13px;
-    margin-top: 20px;
-    font-size: 17px;
-    font-weight: normal;
-    transition: background-color .2s ease-in-out;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 50px 0px 50px;
 }
 
-aside h3:hover {
-    background-color: #ff338b1a;
+.right-btn {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
-aside h3>img {
-    filter: invert(1);
-    margin-right: 5px;
-}
-
-.aside-text:hover, .aside-text-first:hover {
-    background-color: rgba(94, 93, 93, 0.416);
-    border: 1px solid rgb(102, 102, 102);
-}
-
-aside h2 {
-    font-size: 40px;
-    font-weight: 1000;
-}
-
-aside p {
-    font-size: 17px;
-}
-
-/* Aside 1 */
-.aside-furtif {
-    margin-top: -70px;
-}
-
-/*Aside 2 */
-.aside-theme {
+.totalAside {
     display: flex;
     justify-content: space-between;
 }
 
-.aside-theme>div {
-    text-align: center;
+.second-aside {
     width: 50%;
+    border: 1px solid rgb(81, 81, 81);
+    padding: 100px 50px 50px 50px;
+    border-radius: 50px;
+    background-color: rgba(71, 71, 71, 0.416);
+    backdrop-filter: blur(7px);
+    margin: 20px 10px 0px 40px;
+    text-align: center;
+    color: white;
 }
 
-.aside-theme>div>div {
-    height: 400px;
+.second-aside:hover {
+    background-color: rgba(77, 77, 77, 0.47);
+    border: 1px solid rgb(129, 128, 128);
 }
 
-.aside-theme p {
+.second-aside p {
+    line-height: 25px;
+    margin-top: 20px;
+    font-size: 20px;
     color: rgb(125, 125, 125);
+}
+
+.second-aside h2 {
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.third-aside {
+    width: 50%;
+    border: 1px solid rgb(81, 81, 81);
+    padding: 100px 50px 50px 50px;
+    border-radius: 50px;
+    background-color: rgba(71, 71, 71, 0.416);
+    backdrop-filter: blur(7px);
+    margin: 20px 40px 0px 10px;
+    text-align: center;
+    color: white;
+}
+
+.third-aside:hover {
+    background-color: rgba(77, 77, 77, 0.47);
+    border: 1px solid rgb(129, 128, 128);
+}
+
+.third-aside p {
+    line-height: 25px;
+    margin-top: 20px;
+    margin-bottom: 39px;
+    font-size: 20px;
+    color: rgb(125, 125, 125);
+}
+
+.third-aside h2 {
+    font-size: 45px;
+    font-weight: 800;
 }
 
 /* Aside 3 (marquee) */
