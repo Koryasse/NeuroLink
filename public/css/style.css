@@ -104,8 +104,8 @@ a {
     width: 100%;
 }
 
-/* Partie Main */
 
+/* Partie Main */
 main {
     margin-top: 50px;
 }
@@ -152,33 +152,6 @@ main h1 {
     background-color: rgb(199, 199, 199);
 }
 
-.btn-line {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-}
-
-.btn-line rect {
-    fill: none;
-    stroke: white;
-    width: calc(100% - 1px);
-    height: calc(100% - 1px);
-    rx: calc(30px);
-    x: .5;
-    y: .5;
-
-    stroke-dasharray: 100;
-    animation: dash 5s linear infinite;
-}
-
-@keyframes dash {
-    to {
-        stroke-dashoffset: 1000;
-    }
-}
-
 /* Partie Aside (Bulles) */
 .first-aside {
     border: 1px solid rgb(81, 81, 81);
@@ -186,7 +159,7 @@ main h1 {
     border-radius: 50px;
     background-color: rgba(71, 71, 71, 0.416);
     backdrop-filter: blur(7px);
-    margin: -40px 40px 0px 40px;
+    margin: -70px 40px 0px 40px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -292,8 +265,30 @@ main h1 {
     font-weight: 800;
 }
 
-/* Aside 3 (marquee) */
+.eclair-fonction {
+    display: flex;
+    justify-content: center;
+}
 
+.eclair-fonction p {
+    border: 1px solid #FF338B;
+    color: #FF338B;
+    border-radius: 40px;
+    height: 50px;
+    width: 150px;
+    padding: 5px 10px 2px 10px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.eclair-fonction p:hover {
+    background-color: #ff338b1e;
+}
+
+/* Aside 3 (marquee) */
 .marquee {
     width: 100%;
     overflow: hidden;
@@ -331,3 +326,28 @@ main h1 {
         transform: translateX(-50%);
     }
 }   
+
+/* Footer */
+
+footer h1 {
+    font-size: 200px;
+    font-weight: 1000;
+}
+
+footer p {
+    margin: 0 5px;
+}
+
+footer a {
+    color: rgb(231, 231, 231);
+}
+
+footer>div {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+footer>div>div {
+    display: flex;
+}
