@@ -95,6 +95,9 @@
         const connectionContainer = document.getElementById('connections-content');
         const activite = document.getElementById('activite');
         const userText = document.getElementById('user-text');
+        const fileContainer = document.getElementById('file-container');
+        const cancelFileButton = document.getElementById('cancel-file');
+        const fileLabel = document.getElementById('file-label');
 
         // Connexion au serveur Socket.io
         const socket = io();
@@ -119,59 +122,188 @@
         // Fonction pour afficher un message dans la liste
         function afficherMessage(message, classe) {
             const messageItem = document.createElement('li');
-            messageItem.textContent = message;
             messageItem.className = classe;
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'message-wrapper';
+            
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'message-content';
+            contentContainer.style.display = 'inline'; // Pour que le texte et le fichier soient sur la même ligne
+            
+            const pseudo = document.createElement('p');
+            pseudo.textContent = 'Vous : ';
+            pseudo.style.display = 'inline'; // Pour garder le pseudo sur la même ligne
+            
+            const textSpan = document.createElement('span');
+            textSpan.textContent = message.replace('Vous : ', '');
+            textSpan.style.marginLeft = '5px';
+            
+            contentContainer.appendChild(pseudo);
+            contentContainer.appendChild(textSpan);
+            wrapper.appendChild(contentContainer);
+            messageItem.appendChild(wrapper);
             messagesContainer.appendChild(messageItem);
         };
     
         // Gestion de l'envoi des messages
         sendButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Empêche le rechargement de la page
+            e.preventDefault();
             
-            const file = fileInput.files[0]; // Récupère le fichier séléctionner
-            const message = inputElement.value.trim(); // Supprime les espaces inutiles
-    
-            if (!message && !file) return; // Ne rien faire si le message est vide
+            const file = fileInput.files[0];
+            const message = inputElement.value.trim();
+
+            if (!message && !file) return;
             
             if (file) {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    console.log('Fichier envoyé :', file.name);
-                    socket.emit('message', {type: 'file', content: reader.result, filename: file.name});
-                    afficherMessage(`Vous: ${file.name}`, 'envoye');
+                    const messageItem = document.createElement('li');
+                    messageItem.className = 'envoye';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'message-wrapper';
+                    
+                    const contentContainer = document.createElement('div');
+                    contentContainer.className = 'message-content';
+                    contentContainer.style.display = 'inline';
+                    
+                    const pseudo = document.createElement('p');
+                    pseudo.style.display = 'inline';
+                    pseudo.textContent = 'Vous : ' + (message || '');
+                    contentContainer.appendChild(pseudo);
+                    
+                    if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = reader.result;
+                        img.style.maxWidth = '300px';
+                        img.style.marginLeft = '10px';
+                        img.style.cursor = 'pointer';
+                        img.style.verticalAlign = 'middle';
+                        img.onclick = () => {
+                            const link = document.createElement('a');
+                            link.href = reader.result;
+                            link.download = file.name;
+                            link.click();
+                        };
+                        contentContainer.appendChild(img);
+                    } else {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = reader.result;
+                        downloadLink.download = file.name;
+                        downloadLink.textContent = file.name;
+                        downloadLink.className = 'file-link';
+                        downloadLink.style.marginLeft = '10px';
+                        downloadLink.style.cursor = 'pointer';
+                        contentContainer.appendChild(downloadLink);
+                    }
+                    
+                    wrapper.appendChild(contentContainer);
+                    messageItem.appendChild(wrapper);
+                    messagesContainer.appendChild(messageItem);
+                    scrollToBottom();
+
+                    // Envoyer le message et le fichier
+                    socket.emit('message', {
+                        type: 'combined',
+                        content: message,
+                        file: reader.result,
+                        filename: file.name
+                    });
                 };
                 reader.readAsDataURL(file);
-            }
-
-            if (message) {
-                console.log('Message envoyé :', message);
-    
-                afficherMessage(`Vous : ${message}`, 'envoye'); 
+            } else if (message) {
+                afficherMessage(`Vous : ${message}`, 'envoye');
                 socket.emit('message', {type: 'text', content: message});
             }
 
-            inputElement.value = ''; 
-            fileInput.value = ''; 
+            inputElement.value = '';
+            fileInput.value = '';
+
+            // Réinitialiser l'affichage du conteneur de fichier
+            fileContainer.classList.remove('active');
         });
 
 
         // Réception des messages du serveur
         socket.on('message', (msg) => {
+            const messageItem = document.createElement('li');
+            messageItem.className = 'recu';
+
             if (msg.type === 'text') {
-                afficherMessage(msg.content, 'recu');
-            } else if (msg.type === 'file') {
-                const messageItem = document.createElement('li');
-                messageItem.className = 'recu';
+                const wrapper = document.createElement('div');
+                wrapper.className = 'message-wrapper';
                 
-                const downloadLink = document.createElement('a');
-                downloadLink.href = msg.content;
-                downloadLink.download = msg.filename;
-                downloadLink.textContent = msg.filename;
-                downloadLink.className = 'file-link';
-                messageItem.appendChild(downloadLink);
-                messagesContainer.appendChild(messageItem);
+                const pseudo = document.createElement('p');
+                pseudo.textContent = msg.sender || 'Utilisateur';
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = ' : ' + msg.content;
+                textSpan.style.marginLeft = '5px';
+                pseudo.appendChild(textSpan);
+                
+                wrapper.appendChild(pseudo);
+                messageItem.appendChild(wrapper);
+            } else if (msg.type === 'file') {
+                if (msg.filename.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'message-wrapper';
+
+                    const pseudo = document.createElement('p');
+                    pseudo.textContent = (msg.sender || 'Utilisateur') + ' : ';
+                    wrapper.appendChild(pseudo);
+
+                    const img = document.createElement('img');
+                    img.src = msg.content;
+                    img.style.maxWidth = '300px';
+                    img.style.cursor = 'pointer';
+                    
+                    img.onclick = () => {
+                        const link = document.createElement('a');
+                        link.href = msg.content;
+                        link.download = msg.filename;
+                        link.click();
+                    };
+                    
+                    wrapper.appendChild(img);
+                    messageItem.appendChild(wrapper);
+                } else {
+                    // Pour les autres types de fichiers
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'message-wrapper';
+
+                    const pseudo = document.createElement('p');
+                    pseudo.textContent = (msg.sender || 'Utilisateur') + ' : ';
+                    wrapper.appendChild(pseudo);
+
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = msg.content;
+                    downloadLink.download = msg.filename;
+                    downloadLink.textContent = msg.filename;
+                    downloadLink.className = 'file-link';
+                    wrapper.appendChild(downloadLink);
+                    
+                    messageItem.appendChild(wrapper);
+                }
             }
+
+            messagesContainer.appendChild(messageItem);
             scrollToBottom();
+        });
+
+        // Gestionnaire pour afficher le conteneur de fichier
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileContainer.classList.add('active');
+            } else {
+                fileContainer.classList.remove('active');
+            }
+        });
+
+        // Gestionnaire pour le bouton d'annulation
+        cancelFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.value = '';
+            fileContainer.classList.remove('active');
         });
     </script>
 </body>
