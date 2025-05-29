@@ -43,6 +43,12 @@ io.on('connection', (socket) => {
                     content: `/uploads/${msg.filename}`
                 });
 
+                // Crée un élément <img> pour afficher l'image
+                const img = document.createElement('img');
+                img.src = `/uploads/${msg.filename}`;
+                img.alt = msg.filename;
+                img.style.maxWidth = "300px";
+                document.body.appendChild(img);
             });
         }
     });

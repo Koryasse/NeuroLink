@@ -226,68 +226,14 @@
 
         // Réception des messages du serveur
         socket.on('message', (msg) => {
-            const messageItem = document.createElement('li');
-            messageItem.className = 'recu';
-
-            if (msg.type === 'text') {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'message-wrapper';
-                
-                const pseudo = document.createElement('p');
-                pseudo.textContent = msg.sender || 'Utilisateur';
-                
-                const textSpan = document.createElement('span');
-                textSpan.textContent = ' : ' + msg.content;
-                textSpan.style.marginLeft = '5px';
-                pseudo.appendChild(textSpan);
-                
-                wrapper.appendChild(pseudo);
-                messageItem.appendChild(wrapper);
-            } else if (msg.type === 'file') {
-                if (msg.filename.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'message-wrapper';
-
-                    const pseudo = document.createElement('p');
-                    pseudo.textContent = (msg.sender || 'Utilisateur') + ' : ';
-                    wrapper.appendChild(pseudo);
-
-                    const img = document.createElement('img');
-                    img.src = msg.content;
-                    img.style.maxWidth = '300px';
-                    img.style.cursor = 'pointer';
-                    
-                    img.onclick = () => {
-                        const link = document.createElement('a');
-                        link.href = msg.content;
-                        link.download = msg.filename;
-                        link.click();
-                    };
-                    
-                    wrapper.appendChild(img);
-                    messageItem.appendChild(wrapper);
-                } else {
-                    // Pour les autres types de fichiers
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'message-wrapper';
-
-                    const pseudo = document.createElement('p');
-                    pseudo.textContent = (msg.sender || 'Utilisateur') + ' : ';
-                    wrapper.appendChild(pseudo);
-
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = msg.content;
-                    downloadLink.download = msg.filename;
-                    downloadLink.textContent = msg.filename;
-                    downloadLink.className = 'file-link';
-                    wrapper.appendChild(downloadLink);
-                    
-                    messageItem.appendChild(wrapper);
-                }
+            if (msg.type === 'file') {
+                const img = document.createElement('img');
+                img.src = msg.content; // "/uploads/nom_du_fichier"
+                img.alt = msg.filename;
+                img.style.maxWidth = "300px";
+                document.body.appendChild(img);
             }
-
-            messagesContainer.appendChild(messageItem);
-            scrollToBottom();
+            // ...autres types de messages...
         });
 
         // Gestionnaire pour afficher le conteneur de fichier
