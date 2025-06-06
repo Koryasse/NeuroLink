@@ -11,22 +11,26 @@ const io = new Server(server);
 
 // Servir les fichiers statiques (HTML, CSS, JS)
 app.use(express.static('public'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-let users = [];
+let users = {}; // socket.id -> username
 
-// Gestion des connexions Socket.io
 io.on('connection', (socket) => {
     console.log('Un utilisateur s\'est connecté');
 
-    users.push(socket.id);
-    io.emit('user-connected', [...users]);
+    // Réception du pseudo
+    socket.on('set-username', (username) => {
+        users[socket.id] = username || 'Utilisateur';
+        io.emit('user-list', Object.values(users));
+    });
 
-    // Écoute des messages envoyés par un client
+    // Réception des messages texte ou fichiers
     socket.on('message', (msg) => {
         if (msg.type === 'text') {
-            console.log(`Message reçu: ${msg.content}`);
+            msg.sender = users[socket.id] || 'Utilisateur';
             socket.broadcast.emit('message', msg);
         } else if (msg.type === 'file') {
+            // Enregistre le fichier sur le serveur (optionnel, dépend de ton usage)
             const fileBuffer = Buffer.from(msg.content.split(',')[1], 'base64');
             const filePath = path.join(__dirname, 'uploads', msg.filename);
 
@@ -35,30 +39,27 @@ io.on('connection', (socket) => {
                     console.error(`Erreur lors de l'écriture du fichier: ${err.message}`);
                     return;
                 }
-
                 console.log(`Fichier enregistré: ${filePath}`);
+                // Envoie le chemin du fichier pour téléchargement
                 socket.broadcast.emit('message', {
                     type: 'file',
                     filename: msg.filename,
-                    content: `/uploads/${msg.filename}`
+                    content: `/uploads/${msg.filename}`,
+                    sender: users[socket.id] || 'Utilisateur'
                 });
-
             });
         }
     });
 
-    // Gestion de la déconnexion
+    // Déconnexion
     socket.on('disconnect', () => {
+        delete users[socket.id];
+        io.emit('user-list', Object.values(users));
         console.log('Un utilisateur s\'est déconnecté');
-        users = users.filter(id => id !== socket.id);
-        io.emit('user-connected', users);
     });
 });
 
-// Gestion des fichiers uploadés
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Démarrage du serveur sur toutes les interfaces réseau
+// Démarrage du serveur
 const PORT = 4040;
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`Serveur démarré sur http://localhost:${PORT}`);

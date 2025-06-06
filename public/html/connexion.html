@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroLink | Connexion</title>
+    <link rel="shortcut icon" href="../img/N.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/connexion.css">
+</head>
+<script>
+document.getElementById('connexion').addEventListener('click', function(e) {
+    e.preventDefault();
+    const input = document.querySelector('input[type="text"]');
+    const username = input.value.trim();
+    if (!username) {
+        alert("Veuillez entrer un nom d'utilisateur.");
+        input.focus();
+        return;
+    }
+    localStorage.setItem('username', username);
+    window.location.href = "chat.html";
+});
+</script>
+<body>
+    <header>
+        <a href="../index.html">NeuroLink</a>
+    </header>
+    <main>
+        <div class="left">
+            <div>
+                <div>
+                    <p>NeuroLink, un lien direct.</p>
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Nom d'utilisateur" maxlength="25" required><br>
+                    <article>
+                        <a href="../index.html" class="retour">Retour en arrière</a>
+                    </article>
+                    <a href="chat.html" id="connexion">Se connecter</a>
+                </form>
+                <hr color="#414141">
+            </div>
+        </div>
+        <div class="right">
+            <div class="gros-neurolink">
+                <p>NeuroLink</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

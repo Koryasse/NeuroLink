@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discute avec tes camarades| NeuroLink</title>
+    <title>Discute avec tes camarades | NeuroLink</title>
     <link rel="stylesheet" href="../css/chat.css"> <!--Le css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!--Pour l'icone-->
     <script src="/socket.io/socket.io.js"></script> <!--Le websocket-->
@@ -55,7 +55,7 @@
                     <button id="menu-user">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="none" viewBox="0 0 24 24">
                             <path stroke="white" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
-                          </svg>                                                    
+                        </svg>                                                    
                     </button>
                 </div>
             </div>
@@ -87,7 +87,7 @@
     </main>
     <script>
 
-        // Références aux éléments HTML
+        // Variables pour les élkéments HTML
         const messagesContainer = document.getElementById('messages-content'); 
         const inputElement = document.getElementById('message-input'); 
         const sendButton = document.getElementById('send'); 
@@ -102,22 +102,39 @@
         // Connexion au serveur Socket.io
         const socket = io();
 
+        const username = localStorage.getItem('username') || 'Utilisateur';
+        socket.emit('set-username', username);
+
+        userText.textContent = username;
+
         // Affichage des connexions
-        socket.on('user-connected', (users) => {
-            console.log('Données reçues:', users);
+        socket.on('user-list', (users) => {
             connectionContainer.innerHTML = '';
-            if (Array.isArray(users)) {
-                activite.innerHTML = `Personnes - ${users.length}`;
-                users.forEach((user) => {
-                    const connectionItem = document.createElement('li');
-                    connectionItem.textContent = `${user}`;
-                    connectionItem.style.color = 'white';
-                    userText.innerHTML = `${user}`;
-                    connectionItem.className = 'connections';
-                    connectionContainer.appendChild(connectionItem);
-                });
-            }
+            activite.innerHTML = `Personnes - ${users.length}`;
+            users.forEach((user) => {
+                const connectionItem = document.createElement('li');
+                connectionItem.textContent = user;
+                connectionItem.style.color = 'white';
+                connectionItem.className = 'connections';
+                connectionContainer.appendChild(connectionItem);
+            });
         });
+
+        function save(msg, classe) {
+            let messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.push({ msg, classe, t: Date.now() });
+            localStorage.setItem('messages', JSON.stringify(messages));
+        }
+
+        function load() {
+            let messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            const now = Date.now();
+            messages = messages.filter(m => now - m.t < 24*60*60*1000);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            messages.forEach(m => afficherMessage(m.msg, m.classe));
+        }
+
+        load();
     
         // Fonction pour afficher un message dans la liste
         function afficherMessage(message, classe) {
@@ -144,9 +161,10 @@
             wrapper.appendChild(contentContainer);
             messageItem.appendChild(wrapper);
             messagesContainer.appendChild(messageItem);
+            save(message, classe);
         };
     
-        // Gestion de l'envoi des messages
+        // Gere l'envoi des messages
         sendButton.addEventListener('click', (e) => {
             e.preventDefault();
             
@@ -158,6 +176,7 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = () => {
+                    
                     const messageItem = document.createElement('li');
                     messageItem.className = 'envoye';
                     const wrapper = document.createElement('div');
@@ -286,6 +305,12 @@
                 }
             }
 
+            save(
+                msg.type === 'text'
+                    ? (msg.sender || 'Utilisateur') + ' : ' + msg.content
+                    : (msg.sender || 'Utilisateur') + ' : ' + (msg.filename || ''),
+                'recu'
+            );
             messagesContainer.appendChild(messageItem);
             scrollToBottom();
         });
